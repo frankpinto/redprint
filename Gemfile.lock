@@ -1,0 +1,12 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    builder (3.2.2)
+    sitemap_generator (5.0.5)
+      builder
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  sitemap_generator
