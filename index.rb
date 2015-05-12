@@ -11,3 +11,10 @@ Anemone.crawl("http://ayalo.aho.gt/") do |anemone|
 end
 
 puts urls.count
+
+SitemapGenerator::Sitemap.default_host = 'http://ayalo.gt'
+SitemapGenerator::Sitemap.create do
+  urls.each do |url|
+    add url
+  end
+end
