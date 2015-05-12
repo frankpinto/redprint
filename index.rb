@@ -1,10 +1,13 @@
 require 'anemone'
 require 'sitemap_generator'
 
-how_many = 0
+urls = []
 Anemone.crawl("http://ayalo.aho.gt/") do |anemone|
   anemone.on_every_page do |page|
-      how_many += 1
+    uri = URI.parse(page.url.to_s)
+    puts uri.path
+    urls << uri.path
   end
 end
-puts how_many
+
+puts urls.count
