@@ -3,3 +3,4 @@ ruby '2.2.0'
 
 gem 'sitemap_generator'
 gem 'anemone'
+gem 'carrierwave'
