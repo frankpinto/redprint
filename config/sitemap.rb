@@ -1,10 +1,12 @@
 require 'anemone'
 require 'sitemap_generator'
+require 'carrierwave'
 
 host = ARGV[1] || 'http://ayalo.aho.gt'
 
-urls = []
+urls = ['/', '/motos']
 Anemone.crawl(host) do |anemone|
+  return
   anemone.on_every_page do |page|
     uri = URI.parse(page.url.to_s)
     # puts uri.path
@@ -21,9 +23,10 @@ puts urls.count
 
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = host
-SitemapGenerator::Sitemap.sitemaps_host = 'http://tools.ayalo.co/'
+SitemapGenerator::Sitemap.sitemaps_host = 'http://tools.ayalo.co.s3.amazonaws.com/'
+SitemapGenerator::Sitemap.public_path = 'public/'
 SitemapGenerator::Sitemap.filename = 'sitemap_gt'
-SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
+SitemapGenerator::Sitemap.adapter = SitemapGenerator::S3Adapter.new
 
 SitemapGenerator::Sitemap.create do
   urls.sort.each do |url|
