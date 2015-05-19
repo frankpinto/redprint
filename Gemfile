@@ -5,4 +5,3 @@ gem 'dotenv'
 gem 'sitemap_generator'
 gem 'anemone'
 gem "fog", "~> 1.3.1"
-gem 'carrierwave'

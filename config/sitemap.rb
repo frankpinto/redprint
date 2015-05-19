@@ -11,7 +11,7 @@ SitemapGenerator::Sitemap.verbose = true
 
 def generate_sitemap host
   urls = []
-  Anemone.crawl(host) do |anemone|
+  Anemone.crawl(host, discard_page_bodies: true) do |anemone|
     anemone.on_every_page do |page|
       uri = URI.parse(page.url.to_s)
       # puts uri.path
@@ -29,7 +29,7 @@ def generate_sitemap host
   return urls
 end
 
-hosts = {'http://ayalo.aho.gt' => 'sitemap_gt', 'http://ayalo.aho.mx' => 'sitemap_mx'}
+hosts = {'http://ayalo.gt' => 'sitemap_gt', 'http://ayalo.mx' => 'sitemap_mx'}
 hosts.each_pair do |host, filename|
   SitemapGenerator::Sitemap.default_host = host
   SitemapGenerator::Sitemap.filename = filename
